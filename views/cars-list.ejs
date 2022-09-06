@@ -1,0 +1,21 @@
+<%- include('./templates/header') %>
+    <section class="container content p-5">
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h1>You did <%= data.session_counter %> visiting this page</h1>
+            </div>
+            <div class="col-6 mb-3 text-end">
+                <a href="/reset-session" class="btn btn-danger btn-lg">Reset</a>
+            </div>
+            <div class="col-12 mb-3">
+                <h5>You have <%= data.cars.length %> cars</h5>
+                <p>The cars in the database are as follows:</p>
+                <ul>
+                    <% for (i in data.cars) { %>
+                        <li> <a href="/cars/<%= data.cars[i].id %>"><%= data.cars[i].name %></a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </section>
+<%- include('./templates/footer') %>
