@@ -1,12 +1,15 @@
 {
-  "name": "037-CARS",
+  "name": "038-LOGIN-REGISTER",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "index.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "node-input-validator": "^4.5.0"
   },
   "devDependencies": {},
   "scripts": {

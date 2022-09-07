@@ -1,0 +1,17 @@
+<%- include('../templates/header') %>
+
+<section class="container login-register content p-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="mb-3">Welcome <%=data.user.first_name%>!</h1>
+            <p>First Name: <%=data.user.first_name%></p>
+            <p>Last Name: <%=data.user.last_name%></p>
+            <p>Email Address: <%=data.user.email_address%></p>
+        </div>
+        <div class="col text-end">
+            <a href="/logout" class="btn btn-danger"> Logout</a>
+        </div>
+    </div>
+</section>
+
+<%- include('../templates/footer') %>

@@ -1,0 +1,47 @@
+<%- include('../templates/header') %>
+
+<section class="container login-register content p-5">
+    <h1 class="mb-5">My Simple Application</h1>
+    <form action="/student-login" method="POST" class="login-form mb-3">
+        <h2 class="mb-3">Login</h2>
+        <div class="row d-flex align-items-center mb-3">
+            <div class="col-sm-12 col-md-4"><label for="email_address">Email Address</label></div>
+            <div class="col"><input type="text" class="form-control" name="email_address"></div>
+        </div>
+        <div class="row d-flex align-items-center mb-3">
+            <div class="col-sm-12 col-md-4"><label for="password">Password</label></div>
+            <div class="col"><input type="password" class="form-control" name="password"></div>
+        </div> 
+        <div class="text-end mb-3">
+            <input type="submit" class="btn btn-success" value="Login">
+        </div>
+    </form>
+    <form action="/student-register" method="POST" class="register-form mb-3">
+        <h2 class="mb-3">Register</h2>
+        <div class="row d-flex align-items-center mb-3">
+            <div class="col-sm-12 col-md-4"><label for="first_name">First Name</label></div>
+            <div class="col"><input type="text" class="field form-control" name="first_name"></div>
+        </div>
+        <div class="row d-flex align-items-center mb-3">
+            <div class="col-sm-12 col-md-4"><label for="last_name">Last Name</label></div>
+            <div class="col"><input type="text" class="field form-control" name="last_name"></div>
+        </div>
+        <div class="row d-flex align-items-center mb-3">
+            <div class="col-sm-12 col-md-4"><label for="email_address">Email Address</label></div>
+            <div class="col"><input type="text" class="field form-control" name="email_address"></div>
+        </div>
+        <div class="row d-flex align-items-center mb-3">
+            <div class="col-sm-12 col-md-4"><label for="password">Password</label></div>
+            <div class="col"><input type="password" class="field form-control" name="password"></div>
+        </div>
+        <div class="row d-flex align-items-center mb-3">
+            <div class="col-sm-12 col-md-4"><label for="confirm_password">Confirm Password</label></div>
+            <div class="col"><input type="password" class="field form-control" name="confirm_password"></div>
+        </div>
+        <div class="text-end mb-3">
+            <input type="submit" class="btn btn-success" value="Login">
+        </div>
+    </form>
+</section>
+
+<%- include('../templates/footer') %>
