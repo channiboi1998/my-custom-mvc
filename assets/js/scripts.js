@@ -4,6 +4,8 @@ $(document).ready(function() {
         
         $.post($(this).attr('action'), $(this).serialize(), function(result) {
             
+            console.log(result);
+
             if (result.status == 422) {
                 let notifications = '';
                 let notification_color = 'danger';
@@ -11,7 +13,7 @@ $(document).ready(function() {
                 notifications += '<div class="alert alert-'+notification_color+' rounded-0 mb-0" role="alert">';
     
                 for (i in result.message) {
-                    notifications += '<p>'+result.message[i].message+'</p>';
+                    notifications += '<p>'+result.message[i]+'</p>';
                 }
                 
                 notifications += '</div>';
@@ -20,6 +22,7 @@ $(document).ready(function() {
                 $("html, body").animate({
                     scrollTop: 0
                 }, 1000);
+
             } else {
                 window.location = '/students/profile';
             }
@@ -48,7 +51,7 @@ $(document).ready(function() {
             notifications += '<div class="alert alert-'+notification_color+' rounded-0 mb-0" role="alert">';
 
             for (i in result.message) {
-                notifications += '<p>'+result.message[i].message+'</p>';
+                notifications += '<p>'+result.message[i]+'</p>';
             }
             
             notifications += '</div>';
