@@ -1,6 +1,6 @@
-const CustomValidate = require('../util/form-validation');
-const bcrypt = require('bcryptjs');
 const ChanniboiModel = require('../util/ChanniboiModel');
+const CustomValidate = require('../util/FormValidation');
+const bcrypt = require('bcryptjs');
 
 class StudentModel extends ChanniboiModel {
     /***
@@ -39,7 +39,7 @@ class StudentModel extends ChanniboiModel {
     /***
      * This method is for processing `student login` form
      */
-    process_login = (request) => {
+    process_login = (request, response) => {
         return new Promise( async (resolve, reject) => {
             let fields = request.body;
 
@@ -52,7 +52,7 @@ class StudentModel extends ChanniboiModel {
             query += this.select();
             query += this.from('students');
             query += this.where(['email_address = ?']);
-            let [result] =  await this.database.execute(query, [fields.email_address]);
+            let [result] =  await this.run(request, response, query, [fields.email_address]);
             if (result.length) {
                 let user = result[0];
                 let database_password = result[0].password;
@@ -113,7 +113,7 @@ class StudentModel extends ChanniboiModel {
     /***
      * This method is for processing the `student form` registration
      */
-    process_register = (request) => {
+    process_register = (request, response) => {
 
         let fields = request.body;
 
@@ -129,7 +129,7 @@ class StudentModel extends ChanniboiModel {
             query += this.from('students');
             query += this.where(['email_address = ?']);
 
-            let [result] = await this.database.execute(query, [fields.email_address]);
+            let [result] = await this.run(request, response, query, [fields.email_address]);
             if (result.length) {
                 data['status'] = 422,
                 data['message'] = ['Email address already exists'];
@@ -139,7 +139,7 @@ class StudentModel extends ChanniboiModel {
                  *  Will create this queries on querybuilder later
                  */
                 let query = "INSERT INTO `students` (`first_name`, `last_name`, `email_address`, `password`, `created_at`, `updated_at`) VALUES (?, ?, ?, ?, NOW(), NOW())";
-                await this.database.execute(query, [
+                await this.run(request, response, query, [
                     fields.first_name,
                     fields.last_name,
                     fields.email_address,
@@ -156,7 +156,7 @@ class StudentModel extends ChanniboiModel {
     /***
      * This method is for fetching a single record
      */
-    fetch_student_by_email = (email_address) => {
+    fetch_student_by_email = (request, response, email_address) => {
         
         let data = {
             'status': '',
@@ -170,7 +170,7 @@ class StudentModel extends ChanniboiModel {
             query += this.from('students');
             query += this.where(['email_address = ?']);
 
-            let [result] = await this.database.execute(query, [email_address]);
+            let [result] = await this.run(request, response, query, [email_address]);
             if (result.length) {
                 data['user'] = result[0];
                 data['status'] = 200;

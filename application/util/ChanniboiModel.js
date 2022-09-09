@@ -38,5 +38,14 @@ module.exports = class ChanniboiModel {
         }
         return query;
     }
+
+    async run(request, response, query, fields) {
+
+        if (response.locals.profiler) {
+            response.locals.profiler['query'] = query + '  ' + fields;
+        }
+        
+        return await this.database.execute(query, fields);
+    }
     
 }

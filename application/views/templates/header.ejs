@@ -12,3 +12,9 @@
     </head>
     <body>
     <section id="notification" class="container-fluid p-0"></section>
+
+    <% if (data.profiler) { %>
+        <section id="profiler" class="mt-5 container p-5 border border-secondary">
+            <pre id="profiler-values" style="margin: unset;"><%=JSON.stringify(data.profiler, undefined, 2)%></pre>
+        </section>
+    <% } %>

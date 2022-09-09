@@ -6,6 +6,11 @@ $(document).ready(function() {
             
             console.log(result);
 
+            let profiler_section = document.getElementById("profiler-values");
+            if (profiler_section) {
+                profiler_section.textContent = JSON.stringify(result.profiler, undefined, 2);
+            }
+
             if (result.status == 422) {
                 let notifications = '';
                 let notification_color = 'danger';
@@ -35,6 +40,13 @@ $(document).ready(function() {
     $('form.register-form').on('submit', function() {
 
         $.post($(this).attr('action'), $(this).serialize(), function(result) {
+
+            console.log(result);
+            
+            let profiler_section = document.getElementById("profiler-values");
+            if (profiler_section) {
+                profiler_section.textContent = JSON.stringify(result.profiler, undefined, 2);
+            }
             
             let notifications = '';
             let status = result.status;

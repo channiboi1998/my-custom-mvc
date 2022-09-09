@@ -20,6 +20,7 @@ app.use(express.static(__dirname + '/assets'));
 app.set('views', __dirname + '/application/views')
 app.set('view engine', 'ejs');
 
+
 app.use(session({
     secret: 'secret-key',
     resave: false,
@@ -29,7 +30,24 @@ app.use(session({
     },
 }));
 
+
+let custom_profiler = (request, response, next) => {
+    response.locals.profiler = {
+        url: request.url,
+        get: request.params,
+        post: request.body,
+        session: request.session,
+        start_execution_time: Date.now(),
+    }
+    next();
+};
+
+app.use(custom_profiler);
+
+
 /***
  * This is where you insert your routes
  */
 app.use('/', require('./application/routes/Students'));
+
+
