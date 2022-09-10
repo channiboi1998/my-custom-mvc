@@ -1,4 +1,4 @@
-const ChanniboiController = require('../util/ChanniboiController');
+const ChanniboiController = require('../core/ChanniboiController');
 const StudentModel = require('../models/StudentModel');
 
 class StudentsController extends ChanniboiController {

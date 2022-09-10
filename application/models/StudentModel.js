@@ -1,5 +1,5 @@
-const ChanniboiModel = require('../util/ChanniboiModel');
-const CustomValidate = require('../util/FormValidation');
+const ChanniboiModel = require('../core/ChanniboiModel');
+const CustomValidate = require('../helpers/ChanniboiFormValidation');
 const bcrypt = require('bcryptjs');
 
 class StudentModel extends ChanniboiModel {

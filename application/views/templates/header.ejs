@@ -15,6 +15,7 @@
 
     <% if (data.profiler) { %>
         <section id="profiler" class="mt-5 container p-5 border border-secondary">
+            <h5>PROFILER ENABLED</h5>
             <pre id="profiler-values" style="margin: unset;"><%=JSON.stringify(data.profiler, undefined, 2)%></pre>
         </section>
     <% } %>

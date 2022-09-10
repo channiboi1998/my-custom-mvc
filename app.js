@@ -20,7 +20,9 @@ app.use(express.static(__dirname + '/assets'));
 app.set('views', __dirname + '/application/views')
 app.set('view engine', 'ejs');
 
-
+/***
+ * Cookie - Session Settings
+ */
 app.use(session({
     secret: 'secret-key',
     resave: false,
@@ -30,7 +32,9 @@ app.use(session({
     },
 }));
 
-
+/***
+ * This is the custom profiler functionality.  I discourage you to remove this.
+ */
 let custom_profiler = (request, response, next) => {
     response.locals.profiler = {
         url: request.url,
@@ -41,12 +45,13 @@ let custom_profiler = (request, response, next) => {
     }
     next();
 };
-
+/***
+ * Comment this line if you wish to turn off profiler
+ */
 app.use(custom_profiler);
 
-
 /***
- * This is where you insert your routes
+ * This is where you insert and import your routes
  */
 app.use('/', require('./application/routes/Students'));
 
