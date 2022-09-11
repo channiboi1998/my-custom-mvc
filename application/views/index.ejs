@@ -1,0 +1,57 @@
+<%- include('./templates/header') %>
+
+<section class="container p-5">
+    <div class="row">
+        <div class="col-4 p-4 border">
+            <form action="/search" method="GET" id="search_form">
+                <h3 class="mb-3">Search Players</h3>
+                <h6>Search Player Name</h6>
+                <input type="text" class="form-control mb-3" name="player_name" placeholder="Search player name here..." value="">
+                <div class="group mb-3">
+                    <h6>Gender</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="male" name="gender">
+                        <label class="form-check-label" for="flexCheckDefault">Male</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="female" name="gender">
+                        <label class="form-check-label" for="flexCheckDefault">Female</label>
+                    </div>
+                </div>
+                <div class="group mb-3">
+                    <h6>Sports</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="basketball" name="sports">
+                        <label class="form-check-label" for="flexCheckDefault">Basketball</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="volleyball" name="sports">
+                        <label class="form-check-label" for="flexCheckDefault">Volleyball</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="rowing" name="sports">
+                        <label class="form-check-label" for="flexCheckDefault">Rowing</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-8 p-4 border player-section">
+            <div class="row player-list" id="player-list">
+                <% 
+                    if (data.players) {
+                        for (i in data.players) {
+                            %>
+                            <div class="col-3 player p-3 pt-0">
+                                <img src="<%=data.players[i].profile_image%>" alt="player-placeholder" class="mb-3">
+                                <h6><%=data.players[i].name%></h6>
+                            </div>
+                            <%
+                        }
+                    }
+                %>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('./templates/footer') %>

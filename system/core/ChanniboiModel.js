@@ -1,9 +1,5 @@
 /***
  * This ChanniboiModel is the Main Model of this custom MVC. 
- * 
- * As of 10/09/2022
- * - has query builder methods such as `select`, `from`, `where` and `run`.
- * 
  */
 
 const database = require('./database'); /* Importing the database connection file: application > core > database */
@@ -56,6 +52,29 @@ module.exports = class ChanniboiModel {
         return query;
     }
 
+    or_where(parameters) {
+        let query = ' WHERE ';
+        for(let i=0; i<parameters.length; i++) {
+            if (i == parameters.length-1) {
+                query += parameters[i];
+            } else {
+                query += parameters[i]+ ' OR '; 
+            }
+        }
+        return query;
+    }    
+
+    join(method, table, condition) {
+        let query = ' '+method+' JOIN ';
+        query += ' '+table+ ' ';
+        query += ' ON '+condition+ ' ';
+        return query;
+    }
+
+    group_by(condtion) {
+        return ' GROUP BY ' +condtion+ ' ';
+    }
+
     /***
      * This is the `RUN` method - custom query builder
      */   
@@ -66,7 +85,13 @@ module.exports = class ChanniboiModel {
         if (response.locals.profiler) {
             response.locals.profiler['query'] = query + '  ' + fields;
         }
-        return await this.database.execute(query, fields);
+
+        if (fields) {
+            return await this.database.execute(query, fields);
+        } else {
+            return await this.database.execute(query);
+        }
+
     }
     
 }

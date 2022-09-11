@@ -1,9 +1,5 @@
 /***
  * This ChanniboiController is the Main Controller of this custom MVC. 
- * 
- * As of 10/09/2022
- * - has methods such as `load_view`, `load_json`, `divert`.
- * 
  */
 
 module.exports = class ChanniboiController {

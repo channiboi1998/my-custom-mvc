@@ -45,6 +45,7 @@ let custom_profiler = (request, response, next) => {
     }
     next();
 };
+
 /***
  * Comment this line if you wish to turn off profiler
  */
@@ -53,6 +54,6 @@ app.use(custom_profiler);
 /***
  * This is where you insert and import your routes
  */
-app.use('/', require('./application/routes/Students'));
+app.use('/', require('./application/routes/SportsPlayers'));
 
 
