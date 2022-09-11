@@ -277,3 +277,31 @@ This is the folder where we create our models. It is also just a typical folder 
 
     }
     ```
+    ---
+    ### Profiler
+
+    If you are not very familar with profilers, basically what a profiler does is it dusplays benchmarksm results, queries. I have created a custom Profiler on my MVC. If you wish to use it, Follow theses steps:
+
+    Go to app.js
+
+    ```JS
+    /***
+    * This is the custom profiler functionality.
+    */
+    let custom_profiler = (request, response, next) => {
+        response.locals.profiler = {
+            url: request.url,
+            get: request.params,
+            post: request.body,
+            session: request.session,
+            start_execution_time: Date.now(),
+        }
+        next();
+    };
+
+    /***
+    * Comment this line if you wish to turn off profiler
+    */
+    app.use(custom_profiler);
+    ```
+    I have enabled this feature by default. If you wish to turn off or disable it, just comment the app.use command.

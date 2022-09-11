@@ -33,7 +33,7 @@ app.use(session({
 }));
 
 /***
- * This is the custom profiler functionality.  I discourage you to remove this.
+ * This is the custom profiler functionality.
  */
 let custom_profiler = (request, response, next) => {
     response.locals.profiler = {
